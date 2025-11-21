@@ -56,3 +56,4 @@ Notes and next steps
 - Render PDF generation: implement backend using ReportLab/Pillow and accept uploaded canvas PNGs.
 - Deploy: frontend to Vercel, backend to Render/Railway (use DATABASE_URL env var and configure). 
 # ELD-Log-and-Trip-Application
+# ELD-Log-and-Trip-Application
