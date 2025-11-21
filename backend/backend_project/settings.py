@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret')
 DEBUG = os.getenv('DEBUG', 'True') in ('True', 'true', '1')
 
-ALLOWED_HOSTS = ['eld-othmane.netlify.app']
+ALLOWED_HOSTS = ['eld-othmane.netlify.app' , 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
