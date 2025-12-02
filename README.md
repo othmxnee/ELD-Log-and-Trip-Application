@@ -1,59 +1,55 @@
-# HOS ELD MVP
+Overview
 
-This repository contains an MVP for an Hours-of-Service (HOS) ELD application: Django + DRF backend and React frontend (Vite).
+This project is a web application that helps generate trip routes and FMCSA-style ELD log sheets. The user enters basic trip details such as start, pickup, and dropoff locations, along with the driver’s current cycle hours and start time. The backend calculates the driving route using OpenRouteService, and when that is not available, it provides a fallback straight-line route.
 
-Structure
+Features
 
-- /backend: Django project and trips app
-- /frontend: React Vite app (skeleton)
+Create trips with start, pickup, and dropoff locations
 
-Quick start (development)
+Fetch driving routes using OpenRouteService (with automatic fallback)
 
-Backend
+Display the full route on an interactive map
 
-1. Create a virtualenv and install requirements:
+Simulate Hours-of-Service behavior using a simple rules engine
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r backend/requirements.txt
-```
+Generate daily ELD log pages based on the trip timeline
 
-2. Run migrations and start server:
+Draw FMCSA-style grids with accurate status transitions
 
-```bash
-cd backend
-python manage.py migrate
-python manage.py runserver
-```
+Combine all log pages into a downloadable PNG or PDF
 
-Frontend
+How It Works
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+The user creates a trip by entering the locations and start time.
 
-API Endpoints (MVP)
+The backend retrieves a detailed route from OpenRouteService.
 
-- POST /api/trips/ -> create trip
-- GET /api/trips/<id>/route/ -> returns route geometry and legs
-- POST /api/trips/<id>/compute-logs/ -> computes HOS segments
-- POST /api/trips/<id>/render-log/ -> accepts pages JSON and (MVP) responds with placeholder
+The app simulates driving, breaks, sleeper time, and duty status changes.
 
-Demo script (3-5 minutes Loom)
+For each day of the trip, the system generates a log page with the proper grid lines and status transitions.
 
-1. Show the NewTrip form and create a sample trip (pre-filled).
-2. Open Trip View (or click sample) and hit Compute Logs.
-3. Show the rendered canvas with duty segments on top of blank-log.png.
-4. Download the PNG and mention PDF export path (backend stub).
-5. Briefly open tests/trips to show HOS unit tests and mention next steps.
+The user can preview the ELD logs inside the app and download them as PNG or PDF files.
 
-Notes and next steps
+Technology
 
-- ORS integration: set ORS_API_KEY in backend env to enable real routing.
-- Render PDF generation: implement backend using ReportLab/Pillow and accept uploaded canvas PNGs.
-- Deploy: frontend to Vercel, backend to Render/Railway (use DATABASE_URL env var and configure). 
-# ELD-Log-and-Trip-Application
-# ELD-Log-and-Trip-Application
+Backend: Django REST Framework, Requests, ReportLab, Pillow
+
+Frontend: React, Vite, Leaflet, HTML Canvas
+
+Mapping: OpenRouteService routing API
+
+Log Rendering: Custom canvas drawing of FMCSA-style daily logs
+
+Purpose
+
+The goal of this project is to demonstrate the ability to combine routing data, Hours-of-Service rules, and custom graphical rendering to produce accurate ELD log sheets automatically from trip input data.
+
+
+<img width="934" height="719" alt="image" src="https://github.com/user-attachments/assets/4b573216-47ba-46a2-adc8-c03d47b635a5" />
+<img width="911" height="916" alt="image" src="https://github.com/user-attachments/assets/8d97b83a-930f-4360-a7dd-a324d9e0cc23" />
+
+
+
+For live overview
+https://eld-othmane.netlify.app/trips
+
