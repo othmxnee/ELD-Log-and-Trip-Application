@@ -51,5 +51,5 @@ The goal of this project is to demonstrate the ability to combine routing data, 
 
 
 For live overview
-https://eld-othmane.netlify.app/trips
+https://eld-othmane.netlify.app
 
